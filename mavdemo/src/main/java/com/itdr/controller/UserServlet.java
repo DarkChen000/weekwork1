@@ -5,7 +5,6 @@ import com.itdr.pojo.Users;
 import com.itdr.service.UserService;
 import com.itdr.service.impl.UserServiceImpl;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,9 +49,9 @@ public class UserServlet extends HttpServlet {
         ResponseCode<Users> login = userService.login(username, password);
 
         // 用session存用户信息，标记为us
-        HttpSession session = request.getSession();
-        Users data = login.getData();
-        session.setAttribute("us",data);
+//        HttpSession session = request.getSession();
+//        Users data = login.getData();
+//        session.setAttribute("us",data);
 
         if (login != null){
             request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request,response);
@@ -67,7 +66,6 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("rpassword");
 
         ResponseCode<Users> register = userService.register(username, password);
-
 
         request.getRequestDispatcher("/index.jsp").forward(request,response);
     }

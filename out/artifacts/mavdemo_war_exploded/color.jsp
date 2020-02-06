@@ -49,7 +49,7 @@
     </div>
 </div>
 <div class="div2" id="bg"></div>
-<div>输入颜色首字母： <input type="text" name="color" id="in"></div>
+<div>输入颜色首字母： <input type="text" name="color" id="in" placeholder="请输入B或者G"></div>
 </body>
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript">

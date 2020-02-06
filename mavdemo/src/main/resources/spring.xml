@@ -16,5 +16,33 @@
 
 <!--    <bean id="userService" class="com.itdr.service.impl.UserServiceImpl"></bean>-->
 
+    <!--配置spring的内置连接池-->
+    <bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!--属性注入-->
+        <property name="DriverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="Url" value="jdbc:mysql://localhost:3306/text"></property>
+        <property name="Username" value="root"></property>
+        <property name="Password" value="motianlun000"></property>
+    </bean>
+
+<!--    &lt;!&ndash;配置JDBC模板&ndash;&gt;-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="driverManagerDataSource"></property>
+    </bean>
+
+<!--    &lt;!&ndash;配置C3P0连接池&ndash;&gt;-->
+    <bean id="comboPooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql:///spring4_day03"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="motianlun000"></property>
+    </bean>
+
+<!--    &lt;!&ndash;配置spring的JDBC模板&ndash;&gt;-->
+    <bean id="jdbcTemplate2" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="comboPooledDataSource"></property>
+    </bean>
+
+    <!--引入属性文件-->
 
 </beans>

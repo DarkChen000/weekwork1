@@ -17,5 +17,6 @@
     <input type="submit" placeholder="登录">
     <a href="/index/register">注册</a>
 </form>
+
 </body>
 </html>

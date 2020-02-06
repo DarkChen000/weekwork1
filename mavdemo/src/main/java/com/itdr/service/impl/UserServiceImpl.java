@@ -43,9 +43,18 @@ public class UserServiceImpl implements UserService{
         if (password == null || "".equals(password)){
             return ResponseCode.toDefeated("输入错误！");
         }
+
+        Users users = userDao.selectByUserNameAndPassword(username, password);
+        if (users != null){
+            return ResponseCode.toDefeated("用户名已存在！");
+        }
+
         int i = userDao.insertByUserNameAndPassword(username, password);
 
         // 成功则返回用户数据
+        if (i == 0){
+            return ResponseCode.toDefeated("注册失败！");
+        }
         return ResponseCode.toSuccess("注册成功");
     }
 }

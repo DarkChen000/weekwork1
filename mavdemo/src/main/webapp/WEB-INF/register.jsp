@@ -14,7 +14,7 @@
 <div>
 <form action="/user/re" method="post">
     <input type="text" placeholder="用户名" name="rusername">
-    <input type="text" placeholder="密码" name="rpassword">
+    <input type="password" placeholder="密码" name="rpassword">
     <input type="submit" value="注册">
 </form>
 </div>
