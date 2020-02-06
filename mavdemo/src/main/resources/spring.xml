@@ -3,14 +3,18 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
 
-    <bean id="u" class="com.itdr.pojo.Users">
-        <property name="username" value="qq"></property>
-        <property name="password" value="123456"></property>
-    </bean>
-    <bean id="u1" class="com.itdr.pojo.Users">
-        <constructor-arg name="username" value="hh"></constructor-arg>
-        <constructor-arg name="password" value="555555"></constructor-arg>
-    </bean>
+<!--    <bean id="u" class="com.itdr.pojo.Users">-->
+<!--        <property name="username" value="qq"></property>-->
+<!--        <property name="password" value="123456"></property>-->
+<!--    </bean>-->
+<!--    <bean id="u1" class="com.itdr.pojo.Users">-->
+<!--        <constructor-arg name="username" value="hh"></constructor-arg>-->
+<!--        <constructor-arg name="password" value="555555"></constructor-arg>-->
+<!--    </bean>-->
+
+<!--    <bean id="userDao" class="com.itdr.dao.UserDao"></bean>-->
+
+<!--    <bean id="userService" class="com.itdr.service.impl.UserServiceImpl"></bean>-->
 
 
 </beans>
