@@ -1,17 +1,17 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="mavdemo:war exploded">
-    <output-path>$PROJECT_DIR$/mavdemo/target/mavdemo</output-path>
+  <artifact type="exploded-war" name="mavdemo (1):war exploded">
+    <output-path>$PROJECT_DIR$/name/target/mavdemo</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
-        <module>mavdemo</module>
+        <module>mavdemo (1)</module>
         <packaging>war</packaging>
       </options>
     </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="mavdemo" />
+          <element id="module-output" name="mavdemo (1)" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.39" />
@@ -31,9 +31,9 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/mavdemo/target/mavdemo/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/name/target/mavdemo/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="mavdemo/web/Web" />
+      <element id="javaee-facet-resources" facet="mavdemo (1)/web/Web" />
     </root>
   </artifact>
 </component>
