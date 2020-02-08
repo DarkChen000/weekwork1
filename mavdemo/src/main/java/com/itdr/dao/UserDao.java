@@ -4,9 +4,11 @@ import com.itdr.pojo.Users;
 import com.itdr.utils.C3P0Util;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 
+@Repository
 public class UserDao {
 
     public Users selectByUserNameAndPassword(String username, String password){

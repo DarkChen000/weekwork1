@@ -1,20 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd ">
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-<!--    <bean id="u" class="com.itdr.pojo.Users">-->
-<!--        <property name="username" value="qq"></property>-->
-<!--        <property name="password" value="123456"></property>-->
+    <!--开启注解  包扫描  扫描com.itdr下所有注解-->
+    <context:component-scan base-package="com.itdr"></context:component-scan>
+    <!--开启注解事务  指向事务管理器-->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"></tx:annotation-driven>
+
+    <!--这是spring事务管理器-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="driverManagerDataSource"></property>
+    </bean>
+    
+    <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="dataSourceTransactionManager"></property>
+    </bean>
+
+    <!--数据层-->
+<!--    <bean id="bankDao" class="com.itdr.dao.impl.BankDaoImpl">-->
+<!--        <property name="jdbcTemplate" ref="jdbcTemplate"></property>-->
 <!--    </bean>-->
-<!--    <bean id="u1" class="com.itdr.pojo.Users">-->
-<!--        <constructor-arg name="username" value="hh"></constructor-arg>-->
-<!--        <constructor-arg name="password" value="555555"></constructor-arg>-->
+
+    <!--业务层-->
+<!--    <bean id="bankService" class="com.itdr.service.impl.BankServiceImpl">-->
+<!--        <property name="bd" ref="bankDao"></property>-->
+<!--        <property name="tt" ref="transactionTemplate"></property>-->
 <!--    </bean>-->
 
-<!--    <bean id="userDao" class="com.itdr.dao.UserDao"></bean>-->
+    <!--切面-->
+    <bean id="aopDemo" class="com.itdr.config.AOPDemo"></bean>
 
-<!--    <bean id="userService" class="com.itdr.service.impl.UserServiceImpl"></bean>-->
+    <!--AOP配置-->
+    <aop:config>
+        <!--配置切入点表达式-->
+        <aop:pointcut id="update" expression="execution(* com.itdr.dao.impl.BankDaoImpl.*(..))" />
+        <aop:pointcut id="update1" expression="execution(* com.itdr.dao.impl.BankDaoImpl.delete(..))" />
+        <aop:pointcut id="update2" expression="execution(* com.itdr.dao.impl.BankDaoImpl.save(..))" />
+        <aop:pointcut id="update3" expression="execution(* com.itdr.dao.impl.BankDaoImpl.update(..))" />
+        <!--配置切面-->
+        <aop:aspect ref="aopDemo">
+            <!--配置前置通知指向切面中的方法，切入点指向update-->
+            <aop:before method="befor" pointcut-ref="update"></aop:before>
+            <!--配置后置通知指向切面中的删除方法，切入点指向update2-->
+            <aop:after-returning method="af" pointcut-ref="update1" returning="num"></aop:after-returning>
+            <!--配置环绕通知指向切面中的修改方法，切入点指向update-->
+            <aop:around method="ar" pointcut-ref="update3"></aop:around>
+            <!--配置异常通知指向切面中的修改方法，切入点指向update-->
+            <aop:after-throwing method="th" pointcut-ref="update3" throwing="thr"></aop:after-throwing>
+            <!--配置最终通知指向切面中的修改方法，切入点指向update-->
+            <aop:after method="zz" pointcut-ref="update3"></aop:after>
+        </aop:aspect>
+    </aop:config>
 
     <!--配置spring的内置连接池-->
     <bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -25,20 +72,20 @@
         <property name="Password" value="motianlun000"></property>
     </bean>
 
-<!--    &lt;!&ndash;配置JDBC模板&ndash;&gt;-->
+    <!--配置JDBC模板-->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="driverManagerDataSource"></property>
     </bean>
 
-<!--    &lt;!&ndash;配置C3P0连接池&ndash;&gt;-->
+    <!--配置C3P0连接池-->
     <bean id="comboPooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-        <property name="jdbcUrl" value="jdbc:mysql:///spring4_day03"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/text"></property>
         <property name="user" value="root"></property>
         <property name="password" value="motianlun000"></property>
     </bean>
 
-<!--    &lt;!&ndash;配置spring的JDBC模板&ndash;&gt;-->
+    <!--配置spring的JDBC模板-->
     <bean id="jdbcTemplate2" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="comboPooledDataSource"></property>
     </bean>

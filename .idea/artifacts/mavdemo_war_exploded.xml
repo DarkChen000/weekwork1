@@ -1,13 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="mavdemo:war exploded">
-    <output-path>$PROJECT_DIR$/mavdemo/target/mavdemo</output-path>
-    <properties id="maven-jee-properties">
-      <options>
-        <exploded>true</exploded>
-        <module>mavdemo</module>
-        <packaging>war</packaging>
-      </options>
-    </properties>
+    <output-path>$PROJECT_DIR$/out/artifacts/mavdemo_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -29,9 +22,6 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:4.3.19.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.9" />
         </element>
-      </element>
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/mavdemo/target/mavdemo/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="mavdemo/web/Web" />
     </root>

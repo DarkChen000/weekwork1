@@ -1,5 +1,6 @@
 package com.itdr.common;
 
+
 public class ResponseCode<T> {
     private Integer status;
     private T data;
@@ -28,6 +29,8 @@ public class ResponseCode<T> {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public ResponseCode(){}
 
     // 多个构造函数
     private ResponseCode(T data){

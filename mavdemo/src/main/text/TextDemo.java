@@ -1,4 +1,5 @@
 import com.itdr.controller.BankController;
+import com.itdr.service.NameService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,6 +23,8 @@ public class TextDemo {
                 System.out.println(map.get(s));
             }
         }
+
+
 
         int update = jdbcTemplate.update("update user set password='111' where username='chen'");
         System.out.println(update);
@@ -51,4 +54,15 @@ public class TextDemo {
 
     }
 
+    @Test
+    public void text4(){
+
+        ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
+        NameService ns = ac.getBean(NameService.class);
+
+        String a  = ns.game("狗", "12月", "魔羯座");
+
+        System.out.println(a);
+
+    }
 }
